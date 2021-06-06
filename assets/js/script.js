@@ -12,13 +12,31 @@ var getLen = function () {
       if (rLen > 128) {
         window.alert("Sorry - the length cannot exceed 128.  \n\nPlease try again.")
       }
-      if (rLen < 8 || rLen === "") {
+      if (rLen < 8 ) {
         window.alert("Sorry - the length must be at least 8.  \n\nPlease try again.")
       }
     }
-    console.log(Math.floor(rLen));
   }
-  return Math.floor(rLen.num);
+  return Math.floor(rLen);
+};
+
+var getCharTypes = function () {
+  passReqs.lowerCase = window.confirm("Do you want lower case letters?");
+  console.log(passReqs.lowerCase);
+
+  passReqs.upperCase = window.confirm("Do you want UPPER case letters?");
+  console.log(passReqs.upperCase);
+
+  passReqs.num = window.confirm("Do you want numbers?");
+  console.log(passReqs.num);
+
+  passReqs.specChar = window.confirm("Do you want special characters?");
+  console.log(passReqs.specChar);
+
+};
+
+var generatePassword= function () {
+  return "yeah! - I made it into the textarea " + passReqs.len;
 }
 
 // Get references to the #generate element
@@ -26,7 +44,6 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  passReqs.len = getLen();
   var password = passReqs.passResult();
   var passwordText = document.querySelector("#password");
 
@@ -44,14 +61,18 @@ var passReqs = {
   num: false,
   specChar: false,
   passResult: function () {
-    return "yeah! - I made it into the textarea"
+    passReqs.len = getLen();
+    passGetTypes = getCharTypes();
+    console.log(passReqs.len);
+    return generatePassword();
   }
 }
 
-/* INFORMATION / VARIABLES */
+/* END INFORMATION / VARIABLES */
 
 /* MAIN LOGC */
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+/* END MAIN LOGIC */
