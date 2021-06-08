@@ -1,4 +1,6 @@
 /* FUNCTIONS  */
+
+// Request a valid password length
 var getLen = function () {
   var rLen = "";
   while (rLen > 128 || rLen < 8 || isNaN(rLen)) {
@@ -18,18 +20,23 @@ var getLen = function () {
   return Math.floor(rLen);
 };
 
+// Request the character set from which to generate the random password
 var getCharTypes = function () {
-  passReqs.lowerCase = window.confirm("Do you want lower case letters in your password?");
-  passReqs.upperCase = window.confirm("Do you want UPPER case letters in your password?");
-  passReqs.num = window.confirm("Do you want numbers in your password?");
-  passReqs.specChar = window.confirm("Do you want special characters in your password?");
-};
 
-var generatePassword = function () {
+  passReqs.lowerCase = false;
+  passReqs.upperCase = false;
+  passReqs.num = false;
+  passReqs.specChar = false;
+  while (!passReqs.lowerCase && !passReqs.upperCase && !passReqs.num && !passReqs.specChar) {
+    passReqs.lowerCase = window.confirm("Do you want lower case letters in your password?");
+    passReqs.upperCase = window.confirm("Do you want UPPER case letters in your password?");
+    passReqs.num = window.confirm("Do you want numbers in your password?");
+    passReqs.specChar = window.confirm("Do you want special characters in your password?");
 
-  var selPassCharSet = "";
-  var retPassword = "\"";
-
+    if (!passReqs.lowerCase && !passReqs.upperCase && !passReqs.num && !passReqs.specChar) {
+      window.alert("Please select at lease one character set to generate your password \n\nPlease try again.");
+    }
+  }
   if (passReqs.lowerCase) {
     selPassCharSet = selPassCharSet + "abcdefghijklmnopqrstuvwxyz";
   }
@@ -43,7 +50,13 @@ var generatePassword = function () {
   if (passReqs.specChar) {
     selPassCharSet = selPassCharSet + " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
   }
-  var temp = "";
+};
+
+// Generate a random password from the user's requested character set
+var generatePassword = function () {
+
+  var retPassword = "\"";
+
   for (var iSelPassLen = 0; iSelPassLen < passReqs.len; iSelPassLen++) {
     // randomly select character from selPassCharSet
     retPassword = selPassCharSet[randomNumber(0, selPassCharSet.length)] + retPassword;
@@ -51,6 +64,7 @@ var generatePassword = function () {
   // return "yeah! - I made it into the textarea " + passReqs.len;
   return "\"" + retPassword;
 };
+
 // generate random number for use in selPassCharSet (selected password character set)
 var randomNumber = function (min, max) {
   var value = Math.floor(Math.random() * (max - min) + min);
@@ -70,6 +84,8 @@ function writePassword() {
 /* END FUNCTIONS */
 
 /* INFORMATION / VARIABLES */
+var selPassCharSet = "";
+
 var passReqs = {
   len: 0,
   lowerCase: false,
