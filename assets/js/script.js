@@ -27,7 +27,7 @@ var getCharTypes = function () {
 
 var generatePassword = function () {
 
-  var selPassCharSet = " ";
+  var selPassCharSet = "";
   var retPassword = "\"";
 
   if (passReqs.lowerCase) {
@@ -41,9 +41,9 @@ var generatePassword = function () {
   }
 
   if (passReqs.specChar) {
-    selPassCharSet = selPassCharSet + ' !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+    selPassCharSet = selPassCharSet + " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
   }
-  
+  var temp = "";
   for (var iSelPassLen = 0; iSelPassLen < passReqs.len; iSelPassLen++) {
     // randomly select character from selPassCharSet
     retPassword = selPassCharSet[randomNumber(0, selPassCharSet.length)] + retPassword;
@@ -53,7 +53,7 @@ var generatePassword = function () {
 };
 // generate random number for use in selPassCharSet (selected password character set)
 var randomNumber = function (min, max) {
-  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  var value = Math.floor(Math.random() * (max - min) + min);
   return value;
 };
 
