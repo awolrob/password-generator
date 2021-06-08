@@ -1,6 +1,6 @@
 /* FUNCTIONS  */
 
-// Request a valid password length
+// Request a valid password length 
 var getLen = function () {
   var rLen = "";
   while (rLen > 128 || rLen < 8 || isNaN(rLen)) {

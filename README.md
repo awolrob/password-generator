@@ -6,7 +6,7 @@ Open [index.html](./index.html) in your browser to view the updated landing page
    - Published Site: [Live URL](https://awolrob.github.io/password-generator/)
 
 ## An employee:
-needs to generate a random password based on criteria they select
+needs to generate a random password based on criteria they select 
 
 ## Acceptance Criteria is as follows:
 
